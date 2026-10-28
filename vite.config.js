@@ -8,6 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      workbox: { globPatterns: ['**/*.{js,css,html,svg,webp}'] },
       includeAssets: ['icon.svg'],
       manifest: {
         name: 'Graz Trip',

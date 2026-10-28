@@ -1,0 +1,215 @@
+{
+  "motel-one": {
+    "source": "https://www.motel-one.com/en/hotels/graz/hotel-graz/",
+    "credit": "Φωτογραφία: www.motel-one.com",
+    "downloadedFrom": "https://image.motel-one.com/fileadmin/dam/Hotels/Graz/Bilder/Hotel-Motel-One-Graz-Fassade-sb.jpg?h=1173&quality=78"
+  },
+  "ananas": {
+    "source": "https://www.austria-trend.at/en/hotels/ananas",
+    "credit": "Φωτογραφία: www.austria-trend.at",
+    "downloadedFrom": "https://www.austria-trend.at/wan/zimmer/image/image-thumb__3189__default_og_image/Hotel-Ananas-Executive-Zimmer1.jpg"
+  },
+  "stainzerbauer": {
+    "source": "https://www.stainzerbauer.at/restaurant/",
+    "credit": "Φωτογραφία: www.stainzerbauer.at",
+    "downloadedFrom": "https://www.stainzerbauer.at/wp-content/uploads/2024/06/Bild-4-e1521019671669.jpg"
+  },
+  "der-steirer": {
+    "source": "https://www.der-steirer.at/",
+    "credit": "Φωτογραφία: www.der-steirer.at",
+    "downloadedFrom": "https://www.der-steirer.at/wp-content/uploads/2017/02/HW-Steirer-21.jpg"
+  },
+  "eis-greissler": {
+    "source": "https://www.eis-greissler.at/standort/wien-rotenturmstrasse/",
+    "credit": "Φωτογραφία: www.eis-greissler.at",
+    "downloadedFrom": "https://www.eis-greissler.at/wp-content/uploads/2022/12/eis-greissler-wien-rotenturmstrasse-653x855.jpg"
+  },
+  "figlmueller": {
+    "source": "https://www.figlmueller.at/wollzeile/",
+    "credit": "Φωτογραφία: www.figlmueller.at",
+    "downloadedFrom": "https://www.figlmueller.at/wp-content/uploads/2021/07/figlmueller-slideshow-wollzeile-fassade-3000x2192-1-1300x950.jpg"
+  },
+  "meissl-schadn": {
+    "source": "https://grandferdinand.com/en/the-restaurants/",
+    "credit": "Grand Ferdinand / Meissl & Schadn Wien",
+    "downloadedFrom": "https://grandferdinand.com/wp-content/uploads/sites/2/2026/04/Meissl_Schadn_Galerie.jpg"
+  },
+  "graz-landhaus": {
+    "source": "https://www.graztourismus.at/de/sightseeing-kultur/sehenswuerdigkeiten/landhaushof_shg_1466",
+    "credit": "Φωτογραφία: www.graztourismus.at",
+    "downloadedFrom": "https://www.graztourismus.at/Sightseeing-Kultur/Sehensw%C3%BCrdigkeiten/Landhaushof/2160/image-thumb__2160__ogImage/landhaushof-1.10b47ea8.jpg"
+  },
+  "graz-staircase": {
+    "source": "https://www.graztourismus.at/de/sightseeing-kultur/sehenswuerdigkeiten/grazer-burg-doppelwendeltreppe_shg_1444",
+    "credit": "Φωτογραφία: www.graztourismus.at",
+    "downloadedFrom": "https://www.graztourismus.at/Sightseeing-Kultur/Sehensw%C3%BCrdigkeiten/Doppelwendeltreppe/10384/image-thumb__10384__ogImage/Doppelwendeltreppe%20%28c%29%20Graz%20Tourismus%20%2822%29_1.2555bcd2.jpg"
+  },
+  "demel": {
+    "source": "https://commons.wikimedia.org/wiki/File:Demel_aussen.jpg",
+    "credit": "Johann Werfring",
+    "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/9/90/Demel_aussen.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "graz-hauptplatz": {
+    "source": "https://commons.wikimedia.org/wiki/File:Graz-hauptplatz-2007.jpg",
+    "credit": "Mgrueter",
+    "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/3/30/Graz-hauptplatz-2007.jpg",
+    "license": "Public domain",
+    "licenseUrl": ""
+  },
+  "graz-dom": {
+    "source": "https://commons.wikimedia.org/wiki/File:Graz_-_Dom.jpg",
+    "credit": "Taxiarchos228",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Graz_-_Dom.jpg/3840px-Graz_-_Dom.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  "graz-mausoleum": {
+    "source": "https://commons.wikimedia.org/wiki/File:Graz%2C_Mausoleum_Kaiser_Ferdinands_II_%281%29.jpg",
+    "credit": "Palickap",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Graz%2C_Mausoleum_Kaiser_Ferdinands_II_%281%29.jpg/3840px-Graz%2C_Mausoleum_Kaiser_Ferdinands_II_%281%29.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "graz-uhrturm": {
+    "source": "https://commons.wikimedia.org/wiki/File:Graz_-_Uhrturm_%28a%29.JPG",
+    "credit": "C.Stadler/Bwag",
+    "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Graz_-_Uhrturm_%28a%29.JPG",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "murinsel": {
+    "source": "https://commons.wikimedia.org/wiki/File:Murinsel_nah.jpg",
+    "credit": "Wikimedia Commons · αναλυτικά στην πηγή",
+    "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/7/72/Murinsel_nah.jpg",
+    "license": "Public domain",
+    "licenseUrl": ""
+  },
+  "kunsthaus": {
+    "source": "https://commons.wikimedia.org/wiki/File:Graz_Kunsthaus_vom_Schlossberg_20061126.jpg",
+    "credit": "Marion Schneider & Christoph Aistleitner",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Graz_Kunsthaus_vom_Schlossberg_20061126.jpg/3840px-Graz_Kunsthaus_vom_Schlossberg_20061126.jpg",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  "stadium": {
+    "source": "https://commons.wikimedia.org/wiki/File:UPC-Arena_Front_New.jpg",
+    "credit": "Jacktd (talk)",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/UPC-Arena_Front_New.jpg/1280px-UPC-Arena_Front_New.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  "vienna-airport": {
+    "source": "https://commons.wikimedia.org/wiki/File:2011-06-14_10-23-56_Austria_Nieder%C3%B6sterreich_Fischamend_Markt.jpg",
+    "credit": "Hansueli Krapf  This   file was uploaded  with Commonist.",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/2011-06-14_10-23-56_Austria_Nieder%C3%B6sterreich_Fischamend_Markt.jpg/3840px-2011-06-14_10-23-56_Austria_Nieder%C3%B6sterreich_Fischamend_Markt.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "graz-hbf": {
+    "source": "https://commons.wikimedia.org/wiki/File:Graz_Hauptbahnhof_bei_Nacht.jpg",
+    "credit": "Maxthurner",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Graz_Hauptbahnhof_bei_Nacht.jpg/3840px-Graz_Hauptbahnhof_bei_Nacht.jpg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  },
+  "wien-hbf": {
+    "source": "https://commons.wikimedia.org/wiki/File:Wien_Hauptbahnhof%2C_2019_%2801%29.jpg",
+    "credit": "Bahnfrend",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Wien_Hauptbahnhof%2C_2019_%2801%29.jpg/3840px-Wien_Hauptbahnhof%2C_2019_%2801%29.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "opera": {
+    "source": "https://commons.wikimedia.org/wiki/File:Wiener_Staatsoper_Front.jpg",
+    "credit": "Wiener Staatsoper GmbH",
+    "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/9/94/Wiener_Staatsoper_Front.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "parliament": {
+    "source": "https://commons.wikimedia.org/wiki/File:Wien_-_Parlamentsgeb%C3%A4ude.JPG",
+    "credit": "C.Stadler/Bwag",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Wien_-_Parlamentsgeb%C3%A4ude.JPG/3840px-Wien_-_Parlamentsgeb%C3%A4ude.JPG",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "rathaus": {
+    "source": "https://commons.wikimedia.org/wiki/File:Wien_Rathaus_hochaufl%C3%B6send.jpg",
+    "credit": "Thomas Ledl",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Wien_Rathaus_hochaufl%C3%B6send.jpg/3840px-Wien_Rathaus_hochaufl%C3%B6send.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "burgtheater": {
+    "source": "https://commons.wikimedia.org/wiki/File:Wien_-_Burgtheater.JPG",
+    "credit": "C.Stadler/Bwag",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Wien_-_Burgtheater.JPG/3840px-Wien_-_Burgtheater.JPG",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "schoenbrunn": {
+    "source": "https://commons.wikimedia.org/wiki/File:Wien_-_Schloss_Sch%C3%B6nbrunn.JPG",
+    "credit": "C.Stadler/Bwag",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Wien_-_Schloss_Sch%C3%B6nbrunn.JPG/3840px-Wien_-_Schloss_Sch%C3%B6nbrunn.JPG",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "karlskirche": {
+    "source": "https://commons.wikimedia.org/wiki/File:Karlskirche_Abendsonne_1.jpg",
+    "credit": "Thomas Ledl",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Karlskirche_Abendsonne_1.jpg/3840px-Karlskirche_Abendsonne_1.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "stephansdom": {
+    "source": "https://commons.wikimedia.org/wiki/File:Wien_-_Stephansdom_%281%29.JPG",
+    "credit": "C.Stadler/Bwag",
+    "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Wien_-_Stephansdom_%281%29.JPG",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "belvedere": {
+    "source": "https://commons.wikimedia.org/wiki/File:Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg",
+    "credit": "Diego Delso",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg/3840px-Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "hofburg": {
+    "source": "https://commons.wikimedia.org/wiki/File:Wien_6_M%C3%A4rz_2021_20_03_48_119000.jpeg",
+    "credit": "Robot8A",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Wien_6_M%C3%A4rz_2021_20_03_48_119000.jpeg/3840px-Wien_6_M%C3%A4rz_2021_20_03_48_119000.jpeg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "michaelerplatz": {
+    "source": "https://commons.wikimedia.org/wiki/File:Wien_6_M%C3%A4rz_2021_20_03_48_119000.jpeg",
+    "credit": "Robot8A",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Wien_6_M%C3%A4rz_2021_20_03_48_119000.jpeg/3840px-Wien_6_M%C3%A4rz_2021_20_03_48_119000.jpeg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "heldenplatz": {
+    "source": "https://commons.wikimedia.org/wiki/File:Wien_-_Heldenplatz.JPG",
+    "credit": "C.Stadler/Bwag",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Wien_-_Heldenplatz.JPG/3840px-Wien_-_Heldenplatz.JPG",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  },
+  "prunksaal": {
+    "source": "https://commons.wikimedia.org/wiki/File:State_Hall_of_the_Austrian_National_Library_NightFall404_1.jpg",
+    "credit": "Richard Hopkins",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/State_Hall_of_the_Austrian_National_Library_NightFall404_1.jpg/1280px-State_Hall_of_the_Austrian_National_Library_NightFall404_1.jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  "herrengasse": {
+    "source": "https://commons.wikimedia.org/wiki/File:IMG_0403_-_Graz_-_Herrengasse.JPG",
+    "credit": "Andrew Bossi",
+    "downloadedFrom": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/IMG_0403_-_Graz_-_Herrengasse.JPG/1280px-IMG_0403_-_Graz_-_Herrengasse.JPG",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  }
+}

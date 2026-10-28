@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { trip, days, blocksByDay, prestartByDay } from './data/itinerary'
+import { trip, days, blocksByDay, prestartByDay, travelNotes, reservationItems } from './data/itinerary'
 const STORAGE_KEY = 'graz-trip-live-v1'
 function loadState() {
   try {
@@ -13,10 +13,10 @@ function saveState(state) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
 }
 
-function fmtClock(value) {
+function fmtClock(value, timeZone = trip.timeZone) {
   const date = value instanceof Date ? value : new Date(value)
   return new Intl.DateTimeFormat('el-GR', {
-    timeZone: trip.timeZone,
+    timeZone,
     hour: '2-digit',
     minute: '2-digit',
     hourCycle: 'h23',
@@ -65,24 +65,20 @@ function getSchedule(block, state) {
 
   return block.activities.map((activity, index) => {
     const completedAt = state.completed?.[activity.id] ? new Date(state.completed[activity.id]) : null
-    let estimatedStart = cursor
-
-    if (activity.type === 'fixed') {
+    let estimatedStart = addMinutes(cursor, activity.gapBefore || 0)
+    if (activity.fixedStart) {
       const fixed = new Date(activity.fixedStart)
-      estimatedStart = fixed
+      estimatedStart = activity.type === 'rest'
+        ? new Date(Math.max(estimatedStart.getTime(), fixed.getTime()))
+        : fixed
     }
-
     const estimatedEnd = activity.restUntil
-      ? new Date(Math.max(estimatedStart.getTime(), new Date(activity.restUntil).getTime()))
+      ? new Date(Math.max(
+          addMinutes(estimatedStart, activity.minDuration || 0).getTime(),
+          new Date(activity.restUntil).getTime(),
+        ))
       : addMinutes(estimatedStart, activity.duration)
-
-    if (completedAt) {
-      cursor = completedAt
-    } else if (activity.type === 'fixed') {
-      cursor = estimatedEnd
-    } else {
-      cursor = estimatedEnd
-    }
+    cursor = completedAt || estimatedEnd
 
     return {
       ...activity,
@@ -116,7 +112,7 @@ function getAnchorInfo(block, state) {
           deadlineOnItem: true,
         }
       }
-      if (item.type === 'fixed') {
+      if (item.fixedStart && item.type !== 'rest') {
         return {
           item,
           index,
@@ -148,6 +144,53 @@ function getAnchorInfo(block, state) {
     diff,
     projectedArrival,
   }
+}
+
+function assetUrl(path) {
+  return path?.startsWith('images/') ? import.meta.env.BASE_URL + path : path
+}
+
+function StatusBadges({ statuses = [] }) {
+  return <div className="status-badges">{statuses.map(status =>
+    <span key={status.label} className={'status-badge ' + status.tone}>{status.label}</span>
+  )}</div>
+}
+
+function PhotoButton({ photo, onOpenPhoto }) {
+  return photo && <button className="landmark-thumb" onClick={() => onOpenPhoto(photo)}
+    aria-label={'Μεγέθυνση φωτογραφίας: ' + photo.alt}>
+    <img src={assetUrl(photo.thumb)} alt={photo.alt} loading="lazy" />
+    <span>🔍 Μεγέθυνση</span>
+  </button>
+}
+
+function ActivityDetails({ item, onOpenPhoto }) {
+  return <>
+    {item.note && <p className="activity-note">{item.note}</p>}
+    {!!item.legs?.length && <details className="transport-details">
+      <summary>Μετακίνηση · {item.legs.map(l => l.line).join(' → ')}</summary>
+      <p className="estimate-note">Εκτιμώμενοι χρόνοι · περιλαμβάνονται στο slot όπου αναφέρεται.</p>
+      <ol>{item.legs.map((leg, i) => <li key={i}>
+        <strong>{leg.line}{leg.direction ? ' · προς ' + leg.direction : ''}</strong>
+        <span>Από: {leg.from}</span><span>Έως: {leg.to}</span>
+        <small>{leg.estimate}</small>
+        {['walking','transit','driving'].includes(leg.mode) &&
+          <a href={mapUrl(leg.to, leg.mode, leg.from)} target="_blank" rel="noreferrer">📍 Διαδρομή στο Google Maps</a>}
+      </li>)}</ol>
+    </details>}
+    {!!item.stops?.length && <details className="place-details">
+      <summary>{item.stops.length > 1 ? 'Τα σημεία της στάσης · φωτογραφίες & χάρτες' : 'Διεύθυνση & επίσημη σελίδα'}</summary>
+      {item.stops.map((place, i) => <div className="place-card" key={place.id || place.address}>
+        {i > 0 && <PhotoButton photo={place.photo} onOpenPhoto={onOpenPhoto} />}
+        <strong>{place.name}</strong><p>{place.description}</p><small>{place.address}</small>
+        <div className="place-links">
+          <a href={mapUrl(place.address, 'walking')} target="_blank" rel="noreferrer">📍 Google Maps</a>
+          <a href={place.website} target="_blank" rel="noreferrer">Επίσημη σελίδα ↗</a>
+        </div>
+      </div>)}
+    </details>}
+    {item.source && <a className="source-link" href={item.source} target="_blank" rel="noreferrer">Πηγή / επανέλεγχος ↗</a>}
+  </>
 }
 
 function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
@@ -207,7 +250,8 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
           const nextItem = schedule[index + 1]
           const nextNeedsNavigation = Boolean(
             current &&
-            !item.disableNavigation &&
+            !item.disableNavigation && !item.disableAutoNavigation &&
+            !nextItem?.disableNavigation && !nextItem?.disableAutoNavigation &&
             nextItem?.destination &&
             nextItem.destination !== item.destination
           )
@@ -215,48 +259,42 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
           return (
             <article
               key={item.id}
+              id={item.id}
+              data-category={item.category || item.type}
               className={[
                 'activity-row',
                 done ? 'done' : '',
                 current ? 'current' : '',
                 future ? 'future' : '',
-                item.type === 'fixed' ? 'fixed' : '',
+                item.fixedStart ? 'fixed' : '',
               ].join(' ')}
             >
               <div className="activity-icon">{done ? '✓' : item.icon}</div>
 
               <div className="activity-main">
-                {item.photo && (
-                  <button
-                    className="landmark-thumb"
-                    onClick={() => onOpenPhoto(item.photo)}
-                    aria-label={`Μεγέθυνση φωτογραφίας: ${item.photo.alt}`}
-                  >
-                    <img src={item.photo.thumb} alt={item.photo.alt} loading="lazy" />
-                    <span>🔍 Μεγέθυνση</span>
-                  </button>
-                )}
+                <PhotoButton photo={item.photo} onOpenPhoto={onOpenPhoto} />
 
                 <div className="activity-meta">
                   <span className={item.type === 'route' ? 'type route' : item.type === 'fixed' ? 'type fixed' : 'type'}>
                     {item.typeLabel || (item.type === 'route' ? 'ΔΙΑΔΡΟΜΗ' : item.type === 'rest' ? 'REST' : item.type === 'meal' ? 'ΓΕΥΜΑ' : item.type === 'fixed' ? item.fixedLabel || 'ΔΡΑΣΗ' : 'ΔΡΑΣΗ')}
                   </span>
                   <span>
-                    {done
-                      ? `END ${fmtClock(item.completedAt)}`
-                      : !state.startedAt && !block.plannedStart
-                        ? 'Μετά το START'
-                        : item.type === 'fixed'
-                        ? (item.timeLabel || fmtClock(item.fixedStart))
-                        : item.restUntil || item.showTimeRange
-                          ? `${fmtClock(item.estimatedStart)}–${fmtClock(item.estimatedEnd)}`
-                          : `${fmtClock(item.estimatedStart)} → ${fmtClock(item.estimatedEnd)}`}
+                    {item.scheduleLabel || fmtClock(item.plannedStart || item.estimatedStart)}
+
                   </span>
                 </div>
 
+                <div className="duration-label">⏱ {item.durationLabel || (item.duration > 0 ? item.duration + '′ συνολικό slot' : 'Στιγμή / χωρίς ορισμένη διάρκεια')}</div>
+                {state.startedAt && <p className="live-time">{done
+                  ? 'Πραγματικό END ' + fmtFull(item.completedAt)
+                  : 'Εκτίμηση ' + fmtClock(item.estimatedStart, item.timeZone || trip.timeZone)
+                    + (item.duration ? '–' + fmtClock(item.estimatedEnd, item.timeZone || trip.timeZone) : '')
+                    + (item.timeZone === 'Europe/Athens' ? ' ώρα Ελλάδας' : '')}</p>}
+                <StatusBadges statuses={item.statuses} />
                 <h4>{item.title}</h4>
                 <p>{item.description}</p>
                 {item.address && <p>{item.address}</p>}
+                <ActivityDetails item={item} onOpenPhoto={onOpenPhoto} />
 
                 <div className="activity-actions">
                   {item.destination && !item.disableNavigation && (
@@ -314,6 +352,15 @@ export default function App() {
   useEffect(() => {
     saveState(liveState)
   }, [liveState])
+
+  useEffect(() => {
+    if (!selectedPhoto) return
+    const previous = document.activeElement
+    const onKey = event => { if (event.key === 'Escape') setSelectedPhoto(null) }
+    document.addEventListener('keydown', onKey)
+    document.querySelector('.photo-close')?.focus()
+    return () => { document.removeEventListener('keydown', onKey); previous?.focus() }
+  }, [selectedPhoto])
 
   const selected = useMemo(
     () => days.find((day) => day.id === activeDay) ?? days[0],
@@ -376,6 +423,25 @@ export default function App() {
         </div>
       </header>
 
+      <p className="time-note">{trip.timeNote}</p>
+      <div className="match-banner"><strong>{trip.priority.title}</strong><span>{trip.priority.label}</span></div>
+      <details className="trip-panel">
+        <summary>Κρατήσεις & εκκρεμότητες · {reservationItems.length} σημεία</summary>
+        <p>BOOKED μόνο για τις κλειδωμένες διαμονές. Τα RESERVE / BOOK TIMED ENTRY παραμένουν ενέργειες προς ολοκλήρωση.</p>
+        <ul className="reservation-list">{reservationItems.map(item => <li key={item.id}>
+          <button onClick={() => {
+            setActiveDay(item.dayId)
+            setTimeout(() => document.getElementById(item.id)?.scrollIntoView({behavior:'smooth',block:'center'}), 0)
+          }}>{item.title}</button>
+          <StatusBadges statuses={[item]} />
+        </li>)}</ul>
+      </details>
+      <details className="trip-panel"><summary>Χρήσιμες σημειώσεις & επανέλεγχοι</summary>
+        <p>Έλεγχος πηγών: {trip.checkedOn}. Τα δρομολόγια και τα ωράρια του Ιανουαρίου χρειάζονται τελική επιβεβαίωση.</p>
+        {travelNotes.map(note => <div key={note.title}><strong>{note.title}</strong><p>{note.text}</p>
+          <a href={note.source} target="_blank" rel="noreferrer">Επίσημη ενημέρωση ↗</a></div>)}
+      </details>
+
       <nav className="day-tabs" aria-label="Ημέρες ταξιδιού">
         {days.map((day) => (
           <button
@@ -429,9 +495,10 @@ export default function App() {
         <div className="photo-modal" role="dialog" aria-modal="true" aria-label={selectedPhoto.alt} onClick={() => setSelectedPhoto(null)}>
           <div className="photo-modal-card" onClick={(event) => event.stopPropagation()}>
             <button className="photo-close" onClick={() => setSelectedPhoto(null)} aria-label="Κλείσιμο">×</button>
-            <img src={selectedPhoto.full} alt={selectedPhoto.alt} />
+            <img src={assetUrl(selectedPhoto.full)} alt={selectedPhoto.alt} />
             <div className="photo-caption">
               <strong>{selectedPhoto.alt}</strong>
+              {selectedPhoto.license && <span>{selectedPhoto.license}</span>}
               {selectedPhoto.source && selectedPhoto.source !== '#' ? (
                 <a href={selectedPhoto.source} target="_blank" rel="noreferrer">{selectedPhoto.credit}</a>
               ) : (

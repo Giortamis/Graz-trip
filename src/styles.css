@@ -637,3 +637,38 @@ button { cursor: pointer; }
   margin: 9px 0;
   background: rgba(255,255,255,.18);
 }
+
+.time-note{font-size:.8rem;line-height:1.6;color:#475569;margin:14px 4px}
+.match-banner{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;background:#7f1d1d;color:white;border-radius:16px;padding:16px}
+.match-banner span{font-size:.78rem;align-self:center}
+.trip-panel{background:#fff;border:1px solid #dbe3ed;border-radius:16px;padding:16px;margin:12px 0;font-size:.85rem;line-height:1.6}
+summary{cursor:pointer;font-weight:750}
+.trip-panel>div{margin:20px 0 8px}.trip-panel p{color:#475569}
+.reservation-list{list-style:none;padding:0}
+.reservation-list li{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #e2e8f0;padding:10px 0}
+.reservation-list button{text-align:left;background:none;border:0;color:#1d4ed8;padding:5px 0;font-size:.85rem}
+.status-badges{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.status-badge{font-size:.64rem;letter-spacing:.03em;font-weight:800;padding:5px 8px;border-radius:7px;background:#fff7d6;color:#854d0e;border:1px solid #f6d879}
+.status-badge.main{background:#fee2e2;color:#991b1b;border-color:#fca5a5}
+.status-badge.success{background:#dcfce7;color:#166534;border-color:#86efac}
+.status-badge.info{background:#e0f2fe;color:#075985;border-color:#7dd3fc}
+.duration-label{font-size:.75rem;color:#64748b;margin:7px 0}
+.live-time{font-size:.76rem;color:#1d4ed8!important;font-weight:700}
+.activity-row{scroll-margin-top:20px}
+.activity-row[data-category="match"]{border-color:#ef4444;box-shadow:inset 4px 0 #dc2626}
+.activity-row[data-category="free"]{background:#f0fdf4}
+.activity-note{padding:10px 12px;background:#fffbeb;border-radius:9px;color:#854d0e!important;font-size:.8rem!important;clear:both}
+.transport-details,.place-details{clear:both;margin:12px 0;padding:11px 12px;border-radius:10px;background:#f1f5f9;font-size:.79rem}
+.transport-details summary,.place-details summary{line-height:1.6}
+.transport-details ol{margin:12px 0 0;padding-left:19px}
+.transport-details li{margin:14px 0;line-height:1.7;overflow-wrap:anywhere}
+.transport-details li>span,.transport-details li>small{display:block}
+.transport-details a,.place-links a,.source-link{color:#1d4ed8;font-size:.76rem}
+.estimate-note{font-size:.74rem!important;color:#64748b}
+.place-card{overflow:auto;padding:14px 0;border-bottom:1px solid #dbe3ed}
+.place-card:last-child{border:0}.place-card>strong{display:block}
+.place-card p{font-size:.8rem}.place-card>small{display:block;color:#64748b}
+.place-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.place-card .landmark-thumb{width:110px}.source-link{display:inline-block;margin-bottom:10px}
+.activity-main{min-width:0;overflow-wrap:anywhere}.photo-caption{gap:8px;flex-wrap:wrap}
+@media(max-width:540px){.reservation-list li{align-items:flex-start;flex-direction:column;gap:0}.match-banner{flex-direction:column}.match-banner span{align-self:flex-start}}
