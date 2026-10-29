@@ -3,19 +3,19 @@ import { at, visit, route, slot, leg, walk, status, makeBlock, JAKO, STADIUM_STO
 export default [
   makeBlock('thu-arrival', 'Μετάβαση · Ηράκλειο → Βιέννη → Graz', [
     slot('21','flight','05:00','10:00','fixed','Ηράκλειο → Αθήνα','Πρώτο αεροπορικό σκέλος του ταξιδιού. Αναχώρηση 06:00 ώρα Ελλάδας από Ηράκλειο προς Αθήνα.', {
-      icon:'✈️', category:'flight', fixedStart:'2027-01-21T06:00:00+02:00', timeZone:'Europe/Athens', scheduleLabel:'06:00 Ελλάδας', durationLabel:'1ο αεροπορικό σκέλος', disableNavigation:true,
+      icon:'✈️', category:'flight', fixedStart:'2027-01-21T06:00:00+02:00', timeZone:'Europe/Athens', scheduleLabel:'06:00 Ελλάδας', durationLabel:'1ο αεροπορικό σκέλος', destination:'Heraklion International Airport N. Kazantzakis (HER), Heraklion, Crete, Greece', mode:'driving',
       legs:[leg('Πτήση','Αθήνα','Heraklion Airport (HER)','Athens International Airport (ATH)','Ώρες σύμφωνα με το αεροπορικό εισιτήριο','flight')],
     }),
     visit('21','airport-arrival','10:00','12:02','activity','Αθήνα → Βιέννη','Δεύτερο αεροπορικό σκέλος του ταξιδιού. Άφιξη στη Βιέννη περίπου στις 10:00 ώρα Αυστρίας, παραλαβή αποσκευών και μετάβαση στον Flughafen Wien Bahnhof μέσα στο αεροδρόμιο.', ['vienna-airport'], {
-      icon:'✈️', scheduleLabel:'Άφιξη ~10:00', durationLabel:'Περιθώριο έως 12:02 · αποσκευές + περπάτημα 5–10′',
+      icon:'✈️', scheduleLabel:'Άφιξη ~10:00', durationLabel:'Περιθώριο έως 12:02 · αποσκευές + περπάτημα 5–10′', hideMaps:true,
       legs:[leg('Πτήση','Βιέννη','Athens International Airport (ATH)','Vienna Airport (VIE)','Ώρες σύμφωνα με το αεροπορικό εισιτήριο','flight'),walk('Vienna Airport arrivals, 1300 Schwechat','Flughafen Wien Bahnhof, 1300 Schwechat','Περίπου 5–10′ από τις αφίξεις· αποσκευές επιπλέον')],
     }),
     route('21','rj750','12:02','15:00','RJ 750 — Flughafen Wien Bahnhof → Graz Hbf','Απευθείας Railjet. FLEX / Standard Group ticket: άλλο επιτρεπόμενο ÖBB τρένο μόνο σύμφωνα με τους όρους του εισιτηρίου. Η κράτηση θέσεων ισχύει αποκλειστικά για RJ 750. Τελικός επανέλεγχος timetable πριν το ταξίδι.', 'Flughafen Wien Bahnhof, 1300 Schwechat','graz-hbf',[
       leg('RJ 750','Graz Hbf','Flughafen Wien Bahnhof, 1300 Schwechat','Graz Hauptbahnhof, Europaplatz 4, Graz','2 ώρες 58′ · χωρίς αλλαγή'),
-    ],{icon:'🚆', category:'train', typeLabel:'ΤΡΕΝΟ', fixedStart:at('21','12:02'), statuses:[status('TRAIN / FLEX','info'),status('RECHECK TIMETABLE')], source:'https://www.oebb.at/'}),
+    ],{icon:'🚆', category:'train', typeLabel:'ΤΡΕΝΟ', fixedStart:at('21','12:02'), statuses:[status('TRAIN / FLEX','info'),status('RECHECK TIMETABLE')], hideMaps:true}),
   ], 'START στην αναχώρηση. Η ώρα της πτήσης είναι Ελλάδας· οι υπόλοιπες ώρες του προγράμματος είναι Αυστρίας.'),
   makeBlock('thu-match', 'Graz · Ξενοδοχείο → γεύμα → ΟΦΗ ⚽', [
-    route('21','graz-transfer','15:00','15:20','Graz Hbf → Jakominiplatz','Κατευθείαν προς το ξενοδοχείο. Το slot περιλαμβάνει έξοδο από τον σταθμό, αναμονή και τραμ.', 'graz-hbf',JAKO,[leg('Tram 4','Liebenau/MURPARK','Graz Hauptbahnhof, Europaplatz, Graz',JAKO,'Περίπου 10′ στο τραμ + αναμονή / προσέγγιση')],{source:grazSource}),
+    route('21','graz-transfer','15:00','15:20','Graz Hbf → Jakominiplatz','Κατευθείαν προς το ξενοδοχείο. Το slot περιλαμβάνει έξοδο από τον σταθμό, αναμονή και τραμ.', 'graz-hbf',JAKO,[leg('Tram 4','Liebenau/MURPARK','Graz Hauptbahnhof, Europaplatz, Graz',JAKO,'Περίπου 10′ στο τραμ + αναμονή / προσέγγιση')],{hideMaps:true}),
     visit('21','motel-checkin','15:20','15:30','activity','Motel One Graz — Check-in','Κλειδωμένη διαμονή 21/01 → 22/01. Το ξενοδοχείο βρίσκεται πάνω στον συγκοινωνιακό κόμβο.', ['motel-one'],{icon:'🏨',category:'hotel',statuses:[status('BOOKED','success')],legs:[walk(JAKO,'Motel One Graz, Jakominiplatz 7, Graz','Περίπου 1–2′ από τη στάση, μέσα στο slot check-in')]}),
     visit('21','stainzerbauer','15:35','16:20','meal','Gasthaus Stainzerbauer','Παραδοσιακό αυστριακό/στυριακό Gasthaus. Πρόταση: Kürbiscremesuppe με στυριακό Kürbiskernöl. Κράτηση και γρήγορη εξυπηρέτηση, επειδή ακολουθεί ο αγώνας.', ['stainzerbauer'],{category:'food',statuses:[status('RESERVE')],origin:'Motel One Graz, Jakominiplatz 7, Graz',legs:[walk('Motel One Graz, Jakominiplatz 7, Graz','Gasthaus Stainzerbauer, Bürgergasse 4, Graz','Περίπου 5–6′ πριν το γεύμα')]}),
     visit('21','motel-change','16:20','16:35','activity','Επιστροφή Motel One / αλλαγή','Σύντομη προετοιμασία για τον αγώνα. Το 15λεπτο περιλαμβάνει επιστροφή και αλλαγή.', ['motel-one'],{icon:'🏨',category:'hotel',legs:[walk('Gasthaus Stainzerbauer, Bürgergasse 4, Graz','Motel One Graz, Jakominiplatz 7, Graz','Περίπου 5–6′ + αλλαγή')]}),
