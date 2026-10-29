@@ -4,7 +4,7 @@ import saturday from './saturday.js'
 import sunday from './sunday.js'
 
 export const trip = {
-  eyebrow: 'ΑΥΣΤΡΙΑ TRIP 2026', title: 'Γκρατς - Βιέννη',
+  eyebrow: 'ΑΥΣΤΡΙΑ TRIP 2026', title: 'Γκράτς - Βιέννη',
   currencyLabel: 'Νόμισμα : Ευρώ (EUR / €)', datesLabel: '21–24 Ιανουαρίου 2027', timeZone: 'Europe/Vienna', clockLabel: 'Ώρα Αυστρίας',
   timeNote: 'Όλες οι ώρες είναι Αυστρίας, εκτός της αναχώρησης 06:00 από Ηράκλειο (ώρα Ελλάδας). Οι χρόνοι μετακίνησης είναι εκτιμήσεις με βάση το πρόγραμμα, όχι live δεδομένα.',
   checkedOn: '28/10/2026',
