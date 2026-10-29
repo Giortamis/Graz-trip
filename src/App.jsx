@@ -167,23 +167,31 @@ function PhotoButton({ photo, onOpenPhoto }) {
 
 function ActivityDetails({ item, onOpenPhoto }) {
   const multiplePlaces = item.stops?.length > 1
+  const singlePlace = item.stops?.length === 1 ? item.stops[0] : null
+
   return <>
     {item.note && <p className="activity-note">{item.note}</p>}
-    {!!item.stops?.length && <div className="place-cards">
-      {item.stops.map((place, i) => <div className={multiplePlaces ? 'place-card' : 'place-card single-place'} key={place.id || place.address}>
-        {multiplePlaces && <>
-          {i > 0 && <PhotoButton photo={place.photo} onOpenPhoto={onOpenPhoto} />}
-          <strong>{place.name}</strong><p>{place.description}</p>
-        </>}
-        {place.address && <small>{place.address}</small>}
-        {!item.hideActions && <PlaceActions place={place} hideMap={item.disableNavigation || item.hideMaps} />}
-      </div>)}
-    </div>}
+
+    {multiplePlaces && (
+      <div className="included-places">
+        <span>Περιλαμβάνει</span>
+        <strong>{item.stops.map(place => place.name).join(' · ')}</strong>
+      </div>
+    )}
+
+    {singlePlace && (
+      <div className="place-card single-place">
+        {singlePlace.address && <small>{singlePlace.address}</small>}
+        {!item.hideActions && <PlaceActions place={singlePlace} hideMap={item.disableNavigation || item.hideMaps} />}
+      </div>
+    )}
+
     {!item.stops?.length && !item.hideActions && <PlaceActions place={{
       name: item.title,
       mapUrl: item.mapUrl || (item.destination ? mapUrl(item.destination, item.mode, item.origin) : undefined),
       website: item.website, phone: item.phone, email: item.email,
     }} hideMap={item.disableNavigation || item.hideMaps} />}
+
     {!!item.legs?.length && <details className="transport-details">
       <summary>Μετακίνηση · {item.legs.map(l => l.line).join(' → ')}</summary>
       <p className="estimate-note">Εκτιμώμενοι χρόνοι · περιλαμβάνονται στο slot όπου αναφέρεται.</p>
