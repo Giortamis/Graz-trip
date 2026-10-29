@@ -24,7 +24,7 @@ export const route = (day, id, start, end, title, description, from, to, legs, e
   origin: address(from), destination: address(to), mode: legs.some(l => l.mode === 'transit') ? 'transit' : 'walking',
   legs, icon: legs.some(l => l.mode === 'transit') ? '🚋' : '🚶', category: 'transport', ...extra,
 })
-export const makeBlock = (id, title, activities, startHint) => {
+export const makeBlock = (id, title, activities, startHint, options = {}) => {
   let previous = null
   const normalized = activities.map(activity => {
     const gapBefore = previous ? Math.max(0, (Date.parse(activity.plannedStart) - Date.parse(previous.plannedEnd || previous.plannedStart)) / 60000) : 0
@@ -33,7 +33,7 @@ export const makeBlock = (id, title, activities, startHint) => {
     previous = activity
     return result
   })
-  return { id, title, plannedStart: activities[0].plannedStart, startLabel: '▶ START', startHint, activities: normalized }
+  return { id, title, plannedStart: activities[0].plannedStart, startLabel: '▶ START', startHint, activities: normalized, ...options }
 }
 export const transportSource = 'https://tramwm.wienerlinien.at/web/guest/fahrplaene'
 export const grazSource = 'https://www.holding-graz.at/de/mobilitaet/linien/linienfahrplaene/'
