@@ -415,9 +415,10 @@ export default function App() {
         <div>
           <p className="eyebrow">{trip.eyebrow}</p>
           <h1>{trip.title}</h1>
-          <p className="trip-dates">{trip.currencyLabel}</p>\n          <p className="trip-dates">{trip.datesLabel}</p>
+          <p className="trip-dates">{trip.datesLabel}</p>
         </div>
         <div className="clock-card">
+          <span>{trip.currencyLabel}</span>
           <span>{trip.clockLabel}</span>
           <strong>{tripClock(now)}</strong>
         </div>
