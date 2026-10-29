@@ -2,13 +2,13 @@ import { at, visit, route, slot, leg, walk, status, makeBlock, JAKO, STADIUM_STO
 
 export default [
   makeBlock('thu-arrival', 'Μετάβαση · Ηράκλειο → Βιέννη → Graz', [
-    slot('21','flight','05:00','10:00','fixed','Ηράκλειο → Αθήνα → Βιέννη','Αναχώρηση 06:00 ώρα Ελλάδας. Άφιξη περίπου 10:00 ώρα Αυστρίας, μετά την ανταπόκριση στην Αθήνα. Πρώτος στόχος ο αγώνας· δεν προσθέτουμε sightseeing.', {
-      icon:'✈️', category:'flight', fixedStart:'2027-01-21T06:00:00+02:00', timeZone:'Europe/Athens', scheduleLabel:'06:00 Ελλάδας', durationLabel:'≈5 ώρες μέχρι τη Βιέννη, με ανταπόκριση', disableNavigation:true,
-      legs:[leg('Πτήση με ανταπόκριση','Βιέννη μέσω Αθήνας','Heraklion Airport (HER)','Vienna Airport (VIE)','Αριθμοί πτήσεων / σκέλη: από το εισιτήριο','flight')],
+    slot('21','flight','05:00','10:00','fixed','Ηράκλειο → Αθήνα','Πρώτο αεροπορικό σκέλος του ταξιδιού. Αναχώρηση 06:00 ώρα Ελλάδας από Ηράκλειο προς Αθήνα.', {
+      icon:'✈️', category:'flight', fixedStart:'2027-01-21T06:00:00+02:00', timeZone:'Europe/Athens', scheduleLabel:'06:00 Ελλάδας', durationLabel:'1ο αεροπορικό σκέλος', disableNavigation:true,
+      legs:[leg('Πτήση','Αθήνα','Heraklion Airport (HER)','Athens International Airport (ATH)','Ώρες σύμφωνα με το αεροπορικό εισιτήριο','flight')],
     }),
-    visit('21','airport-arrival','10:00','12:02','activity','Άφιξη Vienna Airport','Παραλαβή αποσκευών και μετάβαση στον Flughafen Wien Bahnhof μέσα στο αεροδρόμιο. Το διάστημα μέχρι το τρένο περιλαμβάνει αποσκευές, περπάτημα και αναμονή.', ['vienna-airport'], {
-      icon:'✈️', scheduleLabel:'~10:00', durationLabel:'Περιθώριο έως 12:02 · περπάτημα 5–10′',
-      legs:[walk('Vienna Airport arrivals, 1300 Schwechat','Flughafen Wien Bahnhof, 1300 Schwechat','Περίπου 5–10′ από τις αφίξεις· αποσκευές επιπλέον')],
+    visit('21','airport-arrival','10:00','12:02','activity','Αθήνα → Βιέννη','Δεύτερο αεροπορικό σκέλος του ταξιδιού. Άφιξη στη Βιέννη περίπου στις 10:00 ώρα Αυστρίας, παραλαβή αποσκευών και μετάβαση στον Flughafen Wien Bahnhof μέσα στο αεροδρόμιο.', ['vienna-airport'], {
+      icon:'✈️', scheduleLabel:'Άφιξη ~10:00', durationLabel:'Περιθώριο έως 12:02 · αποσκευές + περπάτημα 5–10′',
+      legs:[leg('Πτήση','Βιέννη','Athens International Airport (ATH)','Vienna Airport (VIE)','Ώρες σύμφωνα με το αεροπορικό εισιτήριο','flight'),walk('Vienna Airport arrivals, 1300 Schwechat','Flughafen Wien Bahnhof, 1300 Schwechat','Περίπου 5–10′ από τις αφίξεις· αποσκευές επιπλέον')],
     }),
     route('21','rj750','12:02','15:00','RJ 750 — Flughafen Wien Bahnhof → Graz Hbf','Απευθείας Railjet. FLEX / Standard Group ticket: άλλο επιτρεπόμενο ÖBB τρένο μόνο σύμφωνα με τους όρους του εισιτηρίου. Η κράτηση θέσεων ισχύει αποκλειστικά για RJ 750. Τελικός επανέλεγχος timetable πριν το ταξίδι.', 'Flughafen Wien Bahnhof, 1300 Schwechat','graz-hbf',[
       leg('RJ 750','Graz Hbf','Flughafen Wien Bahnhof, 1300 Schwechat','Graz Hauptbahnhof, Europaplatz 4, Graz','2 ώρες 58′ · χωρίς αλλαγή'),
