@@ -3,7 +3,7 @@ import { at, visit, route, slot, leg, walk, status, makeBlock, JAKO, STADIUM_STO
 export default [
   makeBlock('thu-pretrain', 'Ηράκλειο → Αθήνα → Βιέννη', [
     slot('21','home-airport','04:30',null,'route','Σπίτι -> Αεροδρόμιο Ηρακλείου','Αναχώρηση από το σπίτι στις 04:30 για το αεροδρόμιο Ηρακλείου.', {
-      icon:'🚗', category:'transport', scheduleLabel:'04:30', durationLabel:'Αναχώρηση 04:30', destination:'Heraklion International Airport N. Kazantzakis (HER), Heraklion, Crete, Greece', mode:'driving',
+      icon:'🚗', category:'transport', scheduleLabel:'04:30', durationLabel:'Αναχώρηση 04:30', origin:'Current location', destination:'Heraklion International Airport N. Kazantzakis (HER), Heraklion, Crete, Greece', mode:'driving', mapUrl:'https://www.google.com/maps/dir/?api=1&destination=Heraklion%20International%20Airport%20N.%20Kazantzakis%20(HER)%2C%20Heraklion%2C%20Crete%2C%20Greece&travelmode=driving',
     }),
     slot('21','flight','05:00','10:00','fixed','Ηράκλειο → Αθήνα','Πρώτο αεροπορικό σκέλος του ταξιδιού. Αναχώρηση 06:00 ώρα Ελλάδας από Ηράκλειο προς Αθήνα.', {
       icon:'✈️', category:'flight', fixedStart:'2027-01-21T06:00:00+02:00', timeZone:'Europe/Athens', scheduleLabel:'06:00 Ελλάδας', durationLabel:'1ο αεροπορικό σκέλος', hideMaps:true,
