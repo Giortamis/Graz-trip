@@ -10,12 +10,12 @@ export default [
     route('22','hauptplatz-landhaus','09:53','09:57','Hauptplatz -> Herrengasse / Landhaushof','Περπατάμε από το Hauptplatz μέσω Herrengasse προς το Landhaushof.', 'graz-hauptplatz','graz-landhaus',[
       walk('Hauptplatz, 8010 Graz, Austria','Landhaushof, Herrengasse 16, 8010 Graz, Austria','Περίπου 4′ με τα πόδια'),
     ]),
-    visit('22','landhaus','09:57','10:13','activity','Herrengasse → Landhaushof','Περπατάμε στον βασικό ιστορικό δρόμο της πόλης και μπαίνουμε στην αναγεννησιακή αυλή. Κρατάμε σύντομη επίσκεψη για να συνεχίσουμε στην ώρα μας.', ['herrengasse','graz-landhaus'],{category:'sightseeing'}),
+    visit('22','landhaus','09:57','10:13','activity','Herrengasse + Landhaushof','Περπατάμε στον βασικό ιστορικό δρόμο της πόλης και μπαίνουμε στην αναγεννησιακή αυλή. Κρατάμε σύντομη επίσκεψη για να συνεχίσουμε στην ώρα μας.', ['herrengasse','graz-landhaus'],{category:'sightseeing'}),
     route('22','landhaus-cathedral','10:13','10:18','Landhaushof -> Graz Cathedral','Από το Landhaushof πηγαίνουμε με τα πόδια προς τον καθεδρικό.', 'graz-landhaus','graz-dom',[
       walk('Landhaushof, Herrengasse 16, 8010 Graz, Austria','Grazer Dom, Bürgergasse 1, 8010 Graz, Austria','Περίπου 5′ με τα πόδια'),
     ]),
     visit('22','cathedral-quarter','10:18','10:48','activity','Graz Cathedral','Καθεδρικός, αυτοκρατορικό μαυσωλείο και διπλή ελικοειδής σκάλα της Burg. Σύντομο πέρασμα: τον Ιανουάριο το Mausoleum προβλέπεται εξωτερικά. Εσωτερική είσοδος απαιτεί προηγούμενη συνεννόηση.', ['graz-dom','graz-mausoleum','graz-staircase'],{category:'sightseeing',includedPlaces:['Mausoleum Ferdinand II','Double Spiral Staircase'],statuses:[status('VERIFY · MAUSOLEUM')],note:'Χειμερινό ωράριο Mausoleum: δεν υπάρχει κανονική λειτουργία. Δεν προσθέτουμε χρόνο ή άλλο αξιοθέατο.'}),
-    route('22','to-lift','10:48','11:03','Graz Cathedral -> Schloßbergplatz','Από την περιοχή του καθεδρικού κατεβαίνουμε προς την κάτω είσοδο του Schlossberglift.', 'graz-staircase',LIFT,[
+    route('22','to-lift','10:48','11:03','Graz Cathedral area -> Schloßbergplatz','Από την περιοχή του καθεδρικού κατεβαίνουμε προς την κάτω είσοδο του Schlossberglift.', 'graz-staircase',LIFT,[
       walk('Doppelwendeltreppe, Hofgasse 15, Graz',LIFT,'Περίπου 15′ με τα πόδια'),
     ]),
     route('22','lift-up','11:03','11:08','Schloßbergplatz -> Uhrturm','Ανεβαίνουμε στον Schlossberg με το Schlossberglift, όχι από τις σκάλες.', LIFT,'graz-uhrturm',[
