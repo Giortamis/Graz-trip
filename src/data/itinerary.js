@@ -4,8 +4,8 @@ import saturday from './saturday.js'
 import sunday from './sunday.js'
 
 export const trip = {
-  eyebrow: 'GRAZ-TRIP · ΟΦΗ ΣΤΗΝ ΑΥΣΤΡΙΑ', title: 'Graz → Βιέννη',
-  datesLabel: '21–24 Ιανουαρίου 2027', timeZone: 'Europe/Vienna', clockLabel: 'Ώρα Αυστρίας',
+  eyebrow: 'ΑΥΣΤΡΙΑ TRIP 2026', title: 'Γκρατς - Βιέννη',
+  currencyLabel: 'Νόμισμα : €', datesLabel: '21–24 Ιανουαρίου 2027', timeZone: 'Europe/Vienna', clockLabel: 'Ώρα Αυστρίας',
   timeNote: 'Όλες οι ώρες είναι Αυστρίας, εκτός της αναχώρησης 06:00 από Ηράκλειο (ώρα Ελλάδας). Οι χρόνοι μετακίνησης είναι εκτιμήσεις με βάση το πρόγραμμα, όχι live δεδομένα.',
   checkedOn: '28/10/2026',
   priority: { title:'⚽ Sturm Graz – ΟΦΗ', label:'21/01 · 18:45 · ΠΡΩΤΗ ΠΡΟΤΕΡΑΙΟΤΗΤΑ' },
