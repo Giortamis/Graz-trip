@@ -175,7 +175,7 @@ function ActivityDetails({ item, onOpenPhoto }) {
     {multiplePlaces && (
       <div className="included-places">
         <span>Περιλαμβάνει</span>
-        <strong>{item.stops.map(place => place.name).join(' · ')}</strong>
+        <strong>{(item.includedPlaces || item.stops.map(place => place.name)).join(' · ')}</strong>
       </div>
     )}
 
