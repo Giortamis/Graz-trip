@@ -168,21 +168,29 @@ function PhotoButton({ photo, onOpenPhoto }) {
 function ActivityDetails({ item, onOpenPhoto }) {
   const multiplePlaces = item.stops?.length > 1
   const singlePlace = item.stops?.length === 1 ? item.stops[0] : null
+  const primaryPlace = item.stops?.[0] || null
+  const isRoute = item.type === 'route'
+  const hideMapForItem = !isRoute || item.disableNavigation || item.hideMaps
 
   return <>
     {item.note && <p className="activity-note">{item.note}</p>}
 
     {multiplePlaces && (
-      <div className="included-places">
-        <span>Περιλαμβάνει</span>
-        <strong>{(item.includedPlaces || item.stops.map(place => place.name)).join(' · ')}</strong>
-      </div>
+      <>
+        <div className="included-places">
+          <span>Περιλαμβάνει</span>
+          <strong>{(item.includedPlaces || item.stops.map(place => place.name)).join(' · ')}</strong>
+        </div>
+        {!item.hideActions && primaryPlace && !isRoute && (
+          <PlaceActions place={primaryPlace} hideMap />
+        )}
+      </>
     )}
 
     {singlePlace && (
       <div className="place-card single-place">
         {singlePlace.address && <small>{singlePlace.address}</small>}
-        {!item.hideActions && <PlaceActions place={singlePlace} hideMap={item.disableNavigation || item.hideMaps} />}
+        {!item.hideActions && <PlaceActions place={singlePlace} hideMap={hideMapForItem} />}
       </div>
     )}
 
@@ -190,7 +198,7 @@ function ActivityDetails({ item, onOpenPhoto }) {
       name: item.title,
       mapUrl: item.mapUrl || (item.destination ? mapUrl(item.destination, item.mode, item.origin) : undefined),
       website: item.website, phone: item.phone, email: item.email,
-    }} hideMap={item.disableNavigation || item.hideMaps} />}
+    }} hideMap={hideMapForItem} />}
 
     {!!item.legs?.length && <details className="transport-details">
       <summary>Μετακίνηση · {item.legs.map(l => l.line).join(' → ')}</summary>
@@ -199,7 +207,7 @@ function ActivityDetails({ item, onOpenPhoto }) {
         <strong>{leg.line}{leg.direction ? ' · προς ' + leg.direction : ''}</strong>
         <span>Από: {leg.from}</span><span>Έως: {leg.to}</span>
         <small>{leg.estimate}</small>
-        {!item.disableNavigation && !item.hideMaps && ['walking','transit','driving'].includes(leg.mode) &&
+        {isRoute && !item.disableNavigation && !item.hideMaps && ['walking','transit','driving'].includes(leg.mode) &&
           <PlaceActions place={{name: leg.from + ' → ' + leg.to, mapUrl: mapUrl(leg.to, leg.mode, leg.from)}} />}
       </li>)}</ol>
     </details>}
