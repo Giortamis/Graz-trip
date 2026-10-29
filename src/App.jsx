@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import PlaceActions from './components/PlaceActions.jsx'
 import { trip, days, blocksByDay } from './data/itinerary'
 const STORAGE_KEY = 'graz-trip-live-v1'
 function loadState() {
@@ -165,8 +166,24 @@ function PhotoButton({ photo, onOpenPhoto }) {
 }
 
 function ActivityDetails({ item, onOpenPhoto }) {
+  const multiplePlaces = item.stops?.length > 1
   return <>
     {item.note && <p className="activity-note">{item.note}</p>}
+    {!!item.stops?.length && <div className="place-cards">
+      {item.stops.map((place, i) => <div className={multiplePlaces ? 'place-card' : 'place-card single-place'} key={place.id || place.address}>
+        {multiplePlaces && <>
+          {i > 0 && <PhotoButton photo={place.photo} onOpenPhoto={onOpenPhoto} />}
+          <strong>{place.name}</strong><p>{place.description}</p>
+        </>}
+        {place.address && <small>{place.address}</small>}
+        <PlaceActions place={place} hideMap={item.disableNavigation || item.hideMaps} />
+      </div>)}
+    </div>}
+    {!item.stops?.length && <PlaceActions place={{
+      name: item.title,
+      mapUrl: item.mapUrl || (item.destination ? mapUrl(item.destination, item.mode, item.origin) : undefined),
+      website: item.website, phone: item.phone, email: item.email,
+    }} hideMap={item.disableNavigation || item.hideMaps} />}
     {!!item.legs?.length && <details className="transport-details">
       <summary>Μετακίνηση · {item.legs.map(l => l.line).join(' → ')}</summary>
       <p className="estimate-note">Εκτιμώμενοι χρόνοι · περιλαμβάνονται στο slot όπου αναφέρεται.</p>
@@ -174,22 +191,10 @@ function ActivityDetails({ item, onOpenPhoto }) {
         <strong>{leg.line}{leg.direction ? ' · προς ' + leg.direction : ''}</strong>
         <span>Από: {leg.from}</span><span>Έως: {leg.to}</span>
         <small>{leg.estimate}</small>
-        {!item.hideMaps && ['walking','transit','driving'].includes(leg.mode) &&
-          <a href={mapUrl(leg.to, leg.mode, leg.from)} target="_blank" rel="noreferrer">📍 Διαδρομή στο Google Maps</a>}
+        {!item.disableNavigation && !item.hideMaps && ['walking','transit','driving'].includes(leg.mode) &&
+          <PlaceActions place={{name: leg.from + ' → ' + leg.to, mapUrl: mapUrl(leg.to, leg.mode, leg.from)}} />}
       </li>)}</ol>
     </details>}
-    {!!item.stops?.length && <details className="place-details">
-      <summary>{item.stops.length > 1 ? 'Τα σημεία της στάσης · φωτογραφίες & χάρτες' : 'Διεύθυνση & επίσημη σελίδα'}</summary>
-      {item.stops.map((place, i) => <div className="place-card" key={place.id || place.address}>
-        {i > 0 && <PhotoButton photo={place.photo} onOpenPhoto={onOpenPhoto} />}
-        <strong>{place.name}</strong><p>{place.description}</p><small>{place.address}</small>
-        <div className="place-links">
-          {!item.hideMaps && <a href={mapUrl(place.address, 'walking')} target="_blank" rel="noreferrer">📍 Google Maps</a>}
-          <a href={place.website} target="_blank" rel="noreferrer">Επίσημη σελίδα ↗</a>
-        </div>
-      </div>)}
-    </details>}
-    {item.source && <a className="source-link" href={item.source} target="_blank" rel="noreferrer">Πηγή / επανέλεγχος ↗</a>}
   </>
 }
 
@@ -250,8 +255,8 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
           const nextItem = schedule[index + 1]
           const nextNeedsNavigation = Boolean(
             current &&
-            !item.disableNavigation && !item.disableAutoNavigation &&
-            !nextItem?.disableNavigation && !nextItem?.disableAutoNavigation &&
+            !item.disableNavigation && !item.hideMaps && !item.disableAutoNavigation &&
+            !nextItem?.disableNavigation && !nextItem?.hideMaps && !nextItem?.disableAutoNavigation &&
             nextItem?.destination &&
             nextItem.destination !== item.destination
           )
@@ -297,16 +302,6 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
                 <ActivityDetails item={item} onOpenPhoto={onOpenPhoto} />
 
                 <div className="activity-actions">
-                  {item.destination && !item.disableNavigation && !item.hideMaps && (
-                    <a
-                      className="maps-button"
-                      href={mapUrl(item.destination, item.mode, item.origin)}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      📍 Google Maps
-                    </a>
-                  )}
 
                   {current && (
                     <button

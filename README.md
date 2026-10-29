@@ -80,3 +80,11 @@ Official transport source: https://tramwm.wienerlinien.at/web/guest/fahrplaene
 Winter Mausoleum source: https://www.graztourismus.at/en/sightseeing-culture/sights/mausoleum_shg_1468
 
 No reservations are made by this app. Only the two hotel stays supplied as confirmed display BOOKED. Timed entries and restaurant bookings remain pending actions.
+
+## Compact place actions
+
+`src/components/PlaceActions.jsx` renders only available Maps, website, phone and email actions using lucide-react. Every link has an accessible label and title; icons are 18px with 44px touch targets. There are no disabled placeholders.
+
+Places may optionally include `phone`, `email`, and `mapUrl` (see the Place model in `src/data/place.js`). An explicit `mapUrl` takes priority; otherwise an address produces a Google Maps search URL. Phone links strip formatting for `tel:`; email links use `mailto:`. Existing places have no confirmed phone/email, so these fields remain absent.
+
+Route and leg actions retain explicit origin/destination directions and the correct transit/walking mode. Activities with `hideMaps` or `disableNavigation` suppress map icons and automatic navigation, including Athens → Vienna, RJ 750, and Graz Hbf → Jakominiplatz. Source recheck links and the old place collapsible are absent from activity cards.

@@ -1,3 +1,4 @@
+import { definePlace } from './place.js'
 import imageSources from './image-sources.json' with { type: 'json' }
 
 const entries = [
@@ -234,9 +235,9 @@ const entries = [
   ]
 ]
 
-export const places = Object.fromEntries(entries.map(([id, name, address, description, website]) => [id, {
+export const places = Object.fromEntries(entries.map(([id, name, address, description, website]) => [id, definePlace({
   id, name, address, description, website,
   photo: imageSources[id] ? { ...imageSources[id], thumb: 'images/' + id + '-thumb.webp', full: 'images/' + id + '.webp', alt: name } : null,
-}]))
+})]))
 
 
