@@ -56,10 +56,12 @@ test('suppressed navigation cannot create a map icon, including explicit maps', 
   const html=render({name:'Restricted',address:'Address',mapUrl:'https://maps.google.com/',website:'https://example.com/'},true)
   assert.equal((html.match(/<a /g) || []).length,1)
   assert.ok(!html.includes('maps.google.com'))
-  for(const id of ['21-airport-arrival','21-rj750','21-graz-transfer']){
+  for(const id of ['21-airport-arrival','21-rj750']){
     const item=Object.values(blocksByDay).flat().flatMap(b=>b.activities).find(a=>a.id===id)
     assert.equal(item.hideMaps,true,id)
   }
+  const localRoute=Object.values(blocksByDay).flat().flatMap(b=>b.activities).find(a=>a.id==='21-graz-transfer')
+  assert.notEqual(localRoute.hideMaps,true,'local routes should keep Google Maps')
 })
 
 test('existing places retain their real data without invented contacts', () => {
