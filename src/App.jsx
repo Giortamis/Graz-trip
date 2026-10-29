@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { trip, days, blocksByDay, prestartByDay, travelNotes, reservationItems } from './data/itinerary'
+import { trip, days, blocksByDay } from './data/itinerary'
 const STORAGE_KEY = 'graz-trip-live-v1'
 function loadState() {
   try {
@@ -415,7 +415,7 @@ export default function App() {
         <div>
           <p className="eyebrow">{trip.eyebrow}</p>
           <h1>{trip.title}</h1>
-          <p className="trip-dates">{trip.datesLabel}</p>
+          <p className="trip-dates">{trip.currencyLabel}</p>\n          <p className="trip-dates">{trip.datesLabel}</p>
         </div>
         <div className="clock-card">
           <span>{trip.clockLabel}</span>
@@ -425,23 +425,6 @@ export default function App() {
 
       <p className="time-note">{trip.timeNote}</p>
       <div className="match-banner"><strong>{trip.priority.title}</strong><span>{trip.priority.label}</span></div>
-      <details className="trip-panel">
-        <summary>Κρατήσεις & εκκρεμότητες · {reservationItems.length} σημεία</summary>
-        <p>BOOKED μόνο για τις κλειδωμένες διαμονές. Τα RESERVE / BOOK TIMED ENTRY παραμένουν ενέργειες προς ολοκλήρωση.</p>
-        <ul className="reservation-list">{reservationItems.map(item => <li key={item.id}>
-          <button onClick={() => {
-            setActiveDay(item.dayId)
-            setTimeout(() => document.getElementById(item.id)?.scrollIntoView({behavior:'smooth',block:'center'}), 0)
-          }}>{item.title}</button>
-          <StatusBadges statuses={[item]} />
-        </li>)}</ul>
-      </details>
-      <details className="trip-panel"><summary>Χρήσιμες σημειώσεις & επανέλεγχοι</summary>
-        <p>Έλεγχος πηγών: {trip.checkedOn}. Τα δρομολόγια και τα ωράρια του Ιανουαρίου χρειάζονται τελική επιβεβαίωση.</p>
-        {travelNotes.map(note => <div key={note.title}><strong>{note.title}</strong><p>{note.text}</p>
-          <a href={note.source} target="_blank" rel="noreferrer">Επίσημη ενημέρωση ↗</a></div>)}
-      </details>
-
       <nav className="day-tabs" aria-label="Ημέρες ταξιδιού">
         {days.map((day) => (
           <button
@@ -461,14 +444,6 @@ export default function App() {
       </section>
 
       <>
-        <section className="prestart-card">
-          <div>
-            <span>ΠΡΙΝ ΤΟ START</span>
-            <strong>{prestartByDay[activeDay].title}</strong>
-            <p>{prestartByDay[activeDay].text}</p>
-          </div>
-        </section>
-
         {(blocksByDay[activeDay] || []).map((block) => (
           <LiveBlock
             key={block.id}
