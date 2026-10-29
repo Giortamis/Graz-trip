@@ -703,3 +703,27 @@ summary{cursor:pointer;font-weight:750}
 @media (prefers-reduced-motion: reduce) {
   .place-actions a { transition: none; }
 }
+
+
+.included-places {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: .78rem;
+  line-height: 1.45;
+}
+.included-places span {
+  display: block;
+  margin-bottom: 3px;
+  color: #64748b;
+  font-size: .68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.included-places strong {
+  color: #334155;
+  font-weight: 700;
+}
