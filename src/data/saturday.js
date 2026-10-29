@@ -10,7 +10,10 @@ export default [
       walk(KARLS,'Karlskirche, Kreuzherrengasse 1, Wien','Περίπου 5′ με τα πόδια'),
     ]),
     visit('23','karlskirche','12:25','12:45','activity','Karlskirche','Επιβλητική μπαρόκ εκκλησία του Αγίου Καρόλου με μεγάλο τρούλο και δύο χαρακτηριστικές κολόνες. Σύντομη επίσκεψη.', ['karlskirche'],{icon:'⛪',category:'sightseeing'}),
-    route('23','to-stephansplatz','12:45','13:00','Karlsplatz → Stephansplatz','Μετάβαση από την εκκλησία στη U1 και έξοδος στην πλατεία.', 'karlskirche','stephansdom',[leg('U1','Leopoldau',KARLS,'Stephansplatz U-Bahn, Wien','1 στάση · 15′ συνολικά με προσέγγιση / αναμονή')],{icon:'🚇',source:transportSource}),
+    route('23','to-stephansplatz','12:45','13:00','Karlskirche -> Stephansplatz','Από την Karlskirche περπατάμε μέχρι τη U1 στο Karlsplatz και συνεχίζουμε μία στάση μέχρι Stephansplatz.', 'karlskirche','stephansdom',[
+      walk('Karlskirche, Kreuzherrengasse 1, Wien',KARLS,'Περίπου 4–5′ με τα πόδια'),
+      leg('U1','Leopoldau',KARLS,'Stephansplatz U-Bahn, Wien','1 στάση · συνολικά περίπου 15′ με περπάτημα / αναμονή'),
+    ],{icon:'🚇',source:transportSource}),
     visit('23','stephansdom','13:00','13:20','activity','Stephansplatz + Stephansdom','Η καρδιά της ιστορικής Βιέννης και ο γοτθικός Καθεδρικός του Αγίου Στεφάνου. Το 13:00 βρίσκεται εντός του δημοσιευμένου απογευματινού ωραρίου sightseeing· λατρευτικές εκδηλώσεις μπορεί να επηρεάσουν την είσοδο.', ['stephansdom'],{icon:'⛪',category:'sightseeing'}),
     route('23','stephansdom-figlmueller','13:20','13:25','Stephansdom -> Figlmüller Original','Από το Stephansplatz περπατάμε προς το κατάστημα της Wollzeile 5.', 'stephansdom','figlmueller',[
       walk('Stephansplatz, 1010 Wien, Austria','Figlmüller, Wollzeile 5, 1010 Wien, Austria','Περίπου 4–5′ με τα πόδια'),
