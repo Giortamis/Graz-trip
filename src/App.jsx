@@ -176,10 +176,10 @@ function ActivityDetails({ item, onOpenPhoto }) {
           <strong>{place.name}</strong><p>{place.description}</p>
         </>}
         {place.address && <small>{place.address}</small>}
-        <PlaceActions place={place} hideMap={item.disableNavigation || item.hideMaps} />
+        {!item.hideActions && <PlaceActions place={place} hideMap={item.disableNavigation || item.hideMaps} />}
       </div>)}
     </div>}
-    {!item.stops?.length && <PlaceActions place={{
+    {!item.stops?.length && !item.hideActions && <PlaceActions place={{
       name: item.title,
       mapUrl: item.mapUrl || (item.destination ? mapUrl(item.destination, item.mode, item.origin) : undefined),
       website: item.website, phone: item.phone, email: item.email,
