@@ -201,27 +201,28 @@ function ActivityDetails({ item, onOpenPhoto }) {
 function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
   const state = getBlockState(liveState, block.id)
   const schedule = getSchedule(block, state)
+  const isStatic = block.static === true
   const currentIndex = getCurrentIndex(schedule)
-  const anchorInfo = getAnchorInfo(block, state)
-  const complete = currentIndex >= schedule.length
+  const anchorInfo = isStatic ? null : getAnchorInfo(block, state)
+  const complete = !isStatic && currentIndex >= schedule.length
 
   return (
     <section className="live-block">
       <div className="block-head">
         <div>
           <p className="block-kicker">{block.title}</p>
-          <h3>{state.startedAt ? `START: ${fmtFull(state.startedAt)}` : block.plannedStart ? `Προγραμματισμένο START: ${fmtClock(block.plannedStart)}` : 'START όταν είστε έτοιμοι'}</h3>
-          <p>{block.startHint}</p>
+          {!isStatic && <h3>{state.startedAt ? `START: ${fmtFull(state.startedAt)}` : block.plannedStart ? `Προγραμματισμένο START: ${fmtClock(block.plannedStart)}` : 'START όταν είστε έτοιμοι'}</h3>}
+          {block.startHint && <p>{block.startHint}</p>}
         </div>
 
-        {state.startedAt ? (
+        {!isStatic && (state.startedAt ? (
           <button className="reset-button" onClick={() => onReset(block.id)}>↺ Reset</button>
         ) : (
           <button className="start-button" onClick={() => onStart(block.id)}>{block.startLabel}</button>
-        )}
+        ))}
       </div>
 
-      {state.startedAt && !complete && (
+      {!isStatic && state.startedAt && !complete && (
         <div className="live-now">
           <div className="pulse-dot" />
           <div>
@@ -235,7 +236,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
         </div>
       )}
 
-      {anchorInfo && state.startedAt && (
+      {!isStatic && anchorInfo && state.startedAt && (
         <div className={anchorInfo.diff < 45 ? 'anchor-warning danger' : 'anchor-warning'}>
           <span>⚓ Επόμενο σταθερό deadline</span>
           <strong>{anchorInfo.label} · {fmtClock(anchorInfo.anchor)}</strong>
@@ -250,8 +251,8 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
       <div className="activities-list">
         {schedule.map((item, index) => {
           const done = Boolean(item.completedAt)
-          const current = state.startedAt && index === currentIndex
-          const future = state.startedAt && index > currentIndex
+          const current = !isStatic && state.startedAt && index === currentIndex
+          const future = !isStatic && state.startedAt && index > currentIndex
           const nextItem = schedule[index + 1]
           const nextNeedsNavigation = Boolean(
             current &&
@@ -284,13 +285,16 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
                     {item.typeLabel || (item.type === 'route' ? 'ΔΙΑΔΡΟΜΗ' : item.type === 'rest' ? 'REST' : item.type === 'meal' ? 'ΓΕΥΜΑ' : item.type === 'fixed' ? item.fixedLabel || 'ΔΡΑΣΗ' : 'ΔΡΑΣΗ')}
                   </span>
                   <span>
-                    {item.scheduleLabel || fmtClock(item.plannedStart || item.estimatedStart)}
-
+                    {block.dynamicTimes && state.startedAt && !item.fixedStart
+                      ? (item.duration
+                        ? `${fmtClock(item.estimatedStart, item.timeZone || trip.timeZone)}–${fmtClock(item.estimatedEnd, item.timeZone || trip.timeZone)}`
+                        : fmtClock(item.estimatedStart, item.timeZone || trip.timeZone))
+                      : (item.scheduleLabel || fmtClock(item.plannedStart || item.estimatedStart))}
                   </span>
                 </div>
 
                 <div className="duration-label">⏱ {item.durationLabel || (item.duration > 0 ? item.duration + '′ συνολικό slot' : 'Στιγμή / χωρίς ορισμένη διάρκεια')}</div>
-                {state.startedAt && <p className="live-time">{done
+                {!isStatic && state.startedAt && <p className="live-time">{done
                   ? 'Πραγματικό END ' + fmtFull(item.completedAt)
                   : 'Εκτίμηση ' + fmtClock(item.estimatedStart, item.timeZone || trip.timeZone)
                     + (item.duration ? '–' + fmtClock(item.estimatedEnd, item.timeZone || trip.timeZone) : '')
@@ -324,7 +328,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
         })}
       </div>
 
-      {complete && (
+      {!isStatic && complete && (
         <div className="block-complete">
           ✅ Το μπλοκ ολοκληρώθηκε. Όλες οι πραγματικές ώρες END έχουν αποθηκευτεί στο κινητό.
         </div>
@@ -410,17 +414,17 @@ export default function App() {
         <div>
           <p className="eyebrow">{trip.eyebrow}</p>
           <h1>{trip.title}</h1>
+          <p className="trip-dates">{trip.currencyLabel}</p>
           <p className="trip-dates">{trip.datesLabel}</p>
         </div>
         <div className="clock-card">
-          <span>{trip.currencyLabel}</span>
           <span>{trip.clockLabel}</span>
           <strong>{tripClock(now)}</strong>
         </div>
       </header>
 
       <p className="time-note">{trip.timeNote}</p>
-      <div className="match-banner"><strong>{trip.priority.title}</strong><span>{trip.priority.label}</span></div>
+      {activeDay === 'thu' && <div className="match-banner"><strong>{trip.priority.title}</strong><span>{trip.priority.label}</span></div>}
       <nav className="day-tabs" aria-label="Ημέρες ταξιδιού">
         {days.map((day) => (
           <button
@@ -455,9 +459,8 @@ export default function App() {
         <section className="logic-card">
           <strong>Πώς δουλεύει</strong>
           <p>
-            START μόνο στην αρχή κάθε μπλοκ. Μετά χρησιμοποιούμε END. Η πραγματική ώρα END γίνεται η βάση
-            για την επόμενη δραστηριότητα. Όπου η επόμενη στάση είναι αλλού, το END ανοίγει και Google Maps.
-            Τα σταθερά deadlines δεν μετακινούνται.
+            Όπου υπάρχει START, η πραγματική ώρα εκκίνησης γίνεται η βάση για τις επόμενες δραστηριότητες.
+            Μετά χρησιμοποιούμε END. Οι δυναμικές ώρες προσαρμόζονται αυτόματα, ενώ τα σταθερά deadlines δεν μετακινούνται.
           </p>
         </section>
       </>
