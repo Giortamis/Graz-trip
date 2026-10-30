@@ -10,15 +10,12 @@ export default [
       legs:[leg('Πτήση','Αθήνα','Heraklion Airport (HER)','Athens International Airport (ATH)','Ώρες σύμφωνα με το αεροπορικό εισιτήριο','flight')],
     }),
     visit('21','airport-arrival','10:00','10:45','activity','Αθήνα → Βιέννη','Δεύτερο αεροπορικό σκέλος του ταξιδιού. Άφιξη στη Βιέννη περίπου στις 10:00 ώρα Αυστρίας και παραλαβή αποσκευών.', ['vienna-airport'], {
-      icon:'✈️', scheduleLabel:'Άφιξη ~10:00', durationLabel:'~45′ για αποβίβαση / αποσκευές', hideMaps:true,
+      icon:'✈️', scheduleLabel:'Άφιξη ~10:00', durationLabel:'~45′ για αποβίβαση / αποσκευές', hideMaps:true, hideActions:true,
       legs:[leg('Πτήση','Βιέννη','Athens International Airport (ATH)','Vienna Airport (VIE)','Ώρες σύμφωνα με το αεροπορικό εισιτήριο','flight')],
     }),
     route('21','airport-station','10:45','10:55','Vienna Airport Arrivals -> Flughafen Wien Bahnhof','Από τις αφίξεις ακολουθούμε τις πινακίδες Train / Bahnhof / ÖBB προς τον σιδηροδρομικό σταθμό του αεροδρομίου.', 'vienna-airport','Flughafen Wien Bahnhof, 1300 Schwechat',[
       walk('Vienna Airport arrivals, 1300 Schwechat','Flughafen Wien Bahnhof, 1300 Schwechat','Περίπου 5–10′ με τα πόδια'),
     ]),
-    slot('21','station-wait','10:55','12:02','activity','Flughafen Wien Bahnhof — αναμονή για τρένο','Χρόνος ασφαλείας για τουαλέτα, καφέ, αποβάθρα και έλεγχο του επόμενου επιτρεπόμενου τρένου.',{
-      icon:'🚆', category:'train', hideActions:true,
-    }),
   ], '', { static:true }),
 
   makeBlock('thu-train', 'Τρένο → Graz → ΟΦΗ ⚽', [
