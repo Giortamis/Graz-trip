@@ -170,7 +170,9 @@ function ActivityDetails({ item, onOpenPhoto }) {
   const singlePlace = item.stops?.length === 1 ? item.stops[0] : null
   const primaryPlace = item.stops?.[0] || null
   const isRoute = item.type === 'route'
-  const hideMapForItem = !isRoute || item.disableNavigation || item.hideMaps
+  const legCount = item.legs?.length || 0
+  const showCentralRouteMap = isRoute && !item.hideActions && !item.disableNavigation && !item.hideMaps && legCount <= 1
+  const showLegMaps = isRoute && !item.disableNavigation && !item.hideMaps && legCount > 1
 
   return <>
     {item.note && <p className="activity-note">{item.note}</p>}
@@ -187,18 +189,22 @@ function ActivityDetails({ item, onOpenPhoto }) {
       </>
     )}
 
-    {singlePlace && (
+    {singlePlace && !isRoute && (
       <div className="place-card single-place">
         {singlePlace.address && <small>{singlePlace.address}</small>}
-        {!item.hideActions && <PlaceActions place={singlePlace} hideMap={hideMapForItem} />}
+        {!item.hideActions && <PlaceActions place={singlePlace} hideMap />}
       </div>
     )}
 
-    {!item.stops?.length && !item.hideActions && <PlaceActions place={{
+    {!item.stops?.length && !isRoute && !item.hideActions && <PlaceActions place={{
+      name: item.title,
+      website: item.website, phone: item.phone, email: item.email,
+    }} hideMap />}
+
+    {showCentralRouteMap && <PlaceActions place={{
       name: item.title,
       mapUrl: item.mapUrl || (item.destination ? mapUrl(item.destination, item.mode, item.origin) : undefined),
-      website: item.website, phone: item.phone, email: item.email,
-    }} hideMap={hideMapForItem || (isRoute && item.legs?.length > 1)} />}
+    }} />}
 
     {!!item.legs?.length && <details className="transport-details">
       <summary>Μετακίνηση · {item.legs.map(l => l.line).join(' → ')}</summary>
@@ -207,13 +213,12 @@ function ActivityDetails({ item, onOpenPhoto }) {
         <strong>{leg.line}{leg.direction ? ' · προς ' + leg.direction : ''}</strong>
         <span>Από: {leg.from}</span><span>Έως: {leg.to}</span>
         <small>{leg.estimate}</small>
-        {isRoute && item.legs?.length > 1 && !item.disableNavigation && !item.hideMaps && ['walking','transit','driving'].includes(leg.mode) &&
+        {showLegMaps && ['walking','transit','driving'].includes(leg.mode) &&
           <PlaceActions place={{name: leg.from + ' → ' + leg.to, mapUrl: mapUrl(leg.to, leg.mode, leg.from)}} />}
       </li>)}</ol>
     </details>}
   </>
 }
-
 function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
   const state = getBlockState(liveState, block.id)
   const schedule = getSchedule(block, state)
