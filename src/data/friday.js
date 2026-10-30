@@ -21,9 +21,9 @@ export default [
     route('22','schlossbergbahn-up','11:00','11:18','Schloßbergbahn (οδοντωτό/τελεφερίκ) Talstation -> Bergstation','Ανεβαίνουμε στον Schlossberg με τη Schloßbergbahn (οδοντωτό/τελεφερίκ) για την πανοραμική θέα. Η Bahn αναχωρεί ανά 15′ και η διαδρομή διαρκεί λιγότερο από 2′.', 'Schloßbergbahn Talstation, Kaiser-Franz-Josef-Kai 38, 8010 Graz','Schloßbergbahn Bergstation, Schlossberg, 8010 Graz',[
       leg('Schloßbergbahn (οδοντωτό/τελεφερίκ)','Bergstation','Schloßbergbahn Talstation, Kaiser-Franz-Josef-Kai 38, 8010 Graz','Schloßbergbahn Bergstation, Schlossberg, 8010 Graz','Έως ~15′ αναμονή + <2′ διαδρομή','transit'),
     ],{icon:'🚞',source:'https://www.holding-graz.at/en/activities/schlossberg/schlossbergbahn/'}),
-    route('22','bahn-uhrturm','11:18','11:23','Schloßbergbahn (οδοντωτό/τελεφερίκ) Bergstation -> Uhrturm','Από την Bergstation περπατάμε λίγα λεπτά μέχρι το Uhrturm και την πάνω είσοδο του Schlossberglift.', 'Schloßbergbahn Bergstation, Schlossberg, 8010 Graz','graz-uhrturm',[
-      walk('Schloßbergbahn Bergstation, Schlossberg, 8010 Graz','Uhrturm, Am Schlossberg, Graz','Περίπου 5′ με τα πόδια'),
-    ]),
+    route('22','bahn-uhrturm','11:18','11:23','Schloßbergbahn (οδοντωτό/τελεφερίκ) Bergstation -> Uhrturm','Από την Bergstation περπατάμε περίπου 5′ κατηφορικά μέχρι το Uhrturm και την πάνω είσοδο του ασανσέρ Schlossberglift.', 'Schloßbergbahn Bergstation, Schlossberg, 8010 Graz','graz-uhrturm',[
+      walk('Schloßbergbahn Bergstation, Schlossberg, 8010 Graz','Uhrturm, Am Schlossberg, 8010 Graz, Austria','Περίπου 5′ κατηφορικά με τα πόδια'),
+    ],{mapUrl:'https://www.google.com/maps/dir/?api=1&origin=Schlo%C3%9Fbergbahn%20Bergstation%2C%20Schlossberg%2C%208010%20Graz&destination=Uhrturm%2C%20Am%20Schlossberg%2C%208010%20Graz%2C%20Austria&travelmode=walking'}),
     visit('22','schlossberg','11:23','11:53','activity','Schlossberg + Uhrturm','Το εμβληματικό σημείο του Graz με πανοραμική θέα. Μένουμε επάνω περίπου 30′.', ['graz-uhrturm'],{category:'sightseeing',icon:'⭐'}),
     route('22','lift-down','11:53','11:58','Uhrturm -> Schloßbergplatz','Κατεβαίνουμε με το ασανσέρ Schlossberglift για γρήγορη επιστροφή στο Schloßbergplatz.', 'graz-uhrturm',LIFT,[
       leg('Schlossberglift','Schloßbergplatz','Uhrturm, Am Schlossberg, Graz',LIFT,'Lift ~30″ + μικρή αναμονή / προσέγγιση','lift'),
