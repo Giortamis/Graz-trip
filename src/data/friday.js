@@ -15,27 +15,30 @@ export default [
       walk('Landhaushof, Herrengasse 16, 8010 Graz, Austria','Grazer Dom, Bürgergasse 1, 8010 Graz, Austria','Περίπου 5′ με τα πόδια'),
     ]),
     visit('22','cathedral-quarter','10:18','10:48','activity','Graz Cathedral','Καθεδρικός, αυτοκρατορικό μαυσωλείο και διπλή ελικοειδής σκάλα της Burg. Σύντομο πέρασμα: τον Ιανουάριο το Mausoleum προβλέπεται εξωτερικά. Εσωτερική είσοδος απαιτεί προηγούμενη συνεννόηση.', ['graz-dom','graz-mausoleum','graz-staircase'],{category:'sightseeing',includedPlaces:['Mausoleum Ferdinand II','Double Spiral Staircase'],statuses:[status('VERIFY · MAUSOLEUM')],note:'Χειμερινό ωράριο Mausoleum: δεν υπάρχει κανονική λειτουργία. Δεν προσθέτουμε χρόνο ή άλλο αξιοθέατο.'}),
-    route('22','to-lift','10:48','11:03','Graz Cathedral area -> Schloßbergplatz','Από την περιοχή του καθεδρικού κατεβαίνουμε προς την κάτω είσοδο του Schlossberglift.', 'graz-staircase',LIFT,[
-      walk('Doppelwendeltreppe, Hofgasse 15, Graz',LIFT,'Περίπου 15′ με τα πόδια'),
+    route('22','to-schlossbergbahn','10:48','11:00','Graz Cathedral area -> Schloßbergbahn Talstation','Από την περιοχή του καθεδρικού πηγαίνουμε στην κάτω στάση της Schloßbergbahn, Kaiser-Franz-Josef-Kai 38.', 'graz-staircase','Schloßbergbahn Talstation, Kaiser-Franz-Josef-Kai 38, 8010 Graz',[
+      walk('Doppelwendeltreppe, Hofgasse 15, Graz','Schloßbergbahn Talstation, Kaiser-Franz-Josef-Kai 38, 8010 Graz','Περίπου 12′ με τα πόδια'),
     ]),
-    route('22','lift-up','11:03','11:08','Schloßbergplatz -> Uhrturm','Ανεβαίνουμε στον Schlossberg με το ασανσέρ Schlossberglift — όχι από τις σκάλες.', LIFT,'graz-uhrturm',[
-      leg('Schlossberglift','Uhrturm',LIFT,'Uhrturm, Am Schlossberg, Graz','Lift ~30″ + μικρή αναμονή / προσέγγιση','lift'),
-    ],{icon:'⬆️'}),
-    visit('22','schlossberg','11:08','11:43','activity','Schlossberg + Uhrturm','Το εμβληματικό σημείο του Graz με πανοραμική θέα. Μένουμε επάνω περίπου 35′.', ['graz-uhrturm'],{category:'sightseeing',icon:'⭐'}),
-    route('22','lift-down','11:43','11:48','Uhrturm -> Schloßbergplatz','Κατεβαίνουμε ξανά με το ασανσέρ Schlossberglift.', 'graz-uhrturm',LIFT,[
+    route('22','schlossbergbahn-up','11:00','11:18','Schloßbergbahn Talstation -> Bergstation','Ανεβαίνουμε στον Schlossberg με τη Schloßbergbahn για την πανοραμική θέα. Η Bahn αναχωρεί ανά 15′ και η διαδρομή διαρκεί λιγότερο από 2′.', 'Schloßbergbahn Talstation, Kaiser-Franz-Josef-Kai 38, 8010 Graz','Schloßbergbahn Bergstation, Schlossberg, 8010 Graz',[
+      leg('Schloßbergbahn','Bergstation','Schloßbergbahn Talstation, Kaiser-Franz-Josef-Kai 38, 8010 Graz','Schloßbergbahn Bergstation, Schlossberg, 8010 Graz','Έως ~15′ αναμονή + <2′ διαδρομή','transit'),
+    ],{icon:'🚞',source:'https://www.holding-graz.at/en/activities/schlossberg/schlossbergbahn/'}),
+    route('22','bahn-uhrturm','11:18','11:23','Schloßbergbahn Bergstation -> Uhrturm','Από την Bergstation περπατάμε λίγα λεπτά μέχρι το Uhrturm και την πάνω είσοδο του Schlossberglift.', 'Schloßbergbahn Bergstation, Schlossberg, 8010 Graz','graz-uhrturm',[
+      walk('Schloßbergbahn Bergstation, Schlossberg, 8010 Graz','Uhrturm, Am Schlossberg, Graz','Περίπου 5′ με τα πόδια'),
+    ]),
+    visit('22','schlossberg','11:23','11:53','activity','Schlossberg + Uhrturm','Το εμβληματικό σημείο του Graz με πανοραμική θέα. Μένουμε επάνω περίπου 30′.', ['graz-uhrturm'],{category:'sightseeing',icon:'⭐'}),
+    route('22','lift-down','11:53','11:58','Uhrturm -> Schloßbergplatz','Κατεβαίνουμε με το ασανσέρ Schlossberglift για γρήγορη επιστροφή στο Schloßbergplatz.', 'graz-uhrturm',LIFT,[
       leg('Schlossberglift','Schloßbergplatz','Uhrturm, Am Schlossberg, Graz',LIFT,'Lift ~30″ + μικρή αναμονή / προσέγγιση','lift'),
-    ],{icon:'⬇️'}),
-    route('22','lift-murinsel','11:48','11:53','Schloßbergplatz -> Murinsel','Από την έξοδο του lift περπατάμε προς τη Murinsel.', LIFT,'murinsel',[
+    ],{icon:'⬇️',source:'https://www.holding-graz.at/en/activities/schlossberg/schlossberg-lifts/'}),
+    route('22','lift-murinsel','11:58','12:03','Schloßbergplatz -> Murinsel','Από την έξοδο του lift περπατάμε προς τη Murinsel.', LIFT,'murinsel',[
       walk(LIFT,'Murinsel, Lendkai 19, 8020 Graz, Austria','Περίπου 5′ με τα πόδια'),
     ]),
-    visit('22','murinsel','11:53','12:13','activity','Murinsel','Μοντέρνα μεταλλική νησίδα μέσα στον Mur, σχεδιασμένη ως πλατφόρμα και χώρος εκδηλώσεων.', ['murinsel'],{category:'sightseeing',icon:'🌉'}),
-    route('22','murinsel-kunsthaus','12:13','12:16','Murinsel -> Kunsthaus Graz','Περνάμε από τη Murinsel προς το Kunsthaus στην απέναντι όχθη.', 'murinsel','kunsthaus',[
+    visit('22','murinsel','12:03','12:23','activity','Murinsel','Μοντέρνα μεταλλική νησίδα μέσα στον Mur, σχεδιασμένη ως πλατφόρμα και χώρος εκδηλώσεων.', ['murinsel'],{category:'sightseeing',icon:'🌉'}),
+    route('22','murinsel-kunsthaus','12:23','12:26','Murinsel -> Kunsthaus Graz','Περνάμε από τη Murinsel προς το Kunsthaus στην απέναντι όχθη.', 'murinsel','kunsthaus',[
       walk('Murinsel, Lendkai 19, 8020 Graz, Austria','Kunsthaus Graz, Lendkai 1, 8020 Graz, Austria','Περίπου 2–3′ με τα πόδια'),
     ]),
-    visit('22','kunsthaus','12:16','12:31','activity','Kunsthaus Graz','Φουτουριστικό μουσείο σύγχρονης τέχνης. Στο κοινό πρόγραμμα βλέπουμε κυρίως το ιδιαίτερο κτίριο εξωτερικά.', ['kunsthaus'],{category:'sightseeing',icon:'🎨'}),
-    route('22','steirer-buffer','12:31','13:00','Kunsthaus Graz -> Der Steirer','Πηγαίνουμε με τα πόδια προς το Der Steirer. Το υπόλοιπο slot λειτουργεί ως περιθώριο πριν από την κράτηση στις 13:00.', 'kunsthaus','der-steirer',[
+    visit('22','kunsthaus','12:26','12:41','activity','Kunsthaus Graz','Φουτουριστικό μουσείο σύγχρονης τέχνης. Στο κοινό πρόγραμμα βλέπουμε κυρίως το ιδιαίτερο κτίριο εξωτερικά.', ['kunsthaus'],{category:'sightseeing',icon:'🎨'}),
+    route('22','steirer-buffer','12:41','13:00','Kunsthaus Graz -> Der Steirer','Πηγαίνουμε με τα πόδια προς το Der Steirer. Το υπόλοιπο slot λειτουργεί ως μικρό περιθώριο πριν από την κράτηση στις 13:00.', 'kunsthaus','der-steirer',[
       walk('Kunsthaus Graz, Lendkai 1, Graz','Der Steirer, Belgiergasse 1, Graz','Περίπου 10–12′ με τα πόδια· το υπόλοιπο διάστημα είναι buffer'),
-    ],{durationLabel:'29′ μαζί με χρονικό περιθώριο'}),
+    ],{durationLabel:'19′ μαζί με χρονικό περιθώριο'}),
     visit('22','steirer','13:00','13:40','meal','Der Steirer','Παραδοσιακή στυριακή κουζίνα. Επιλογή: Backhendl, το χαρακτηριστικό τραγανό τηγανητό κοτόπουλο. Απαραίτητη κράτηση και ενημέρωση ότι ακολουθεί τρένο.', ['der-steirer'],{category:'food',icon:'🍗',statuses:[status('RESERVE')]}),
     route('22','motel-return','13:40','13:50','Επιστροφή Motel One','Επιστρέφουμε για τις αποσκευές. Προτιμάμε περπάτημα για σταθερή διαδρομή, χωρίς αναμονή τραμ.', 'der-steirer','motel-one',[walk('Der Steirer, Belgiergasse 1, Graz','Motel One Graz, Jakominiplatz 7, Graz','Περίπου 10′· το slot είναι σύντομο')]),
     visit('22','luggage','13:50','14:00','activity','Αποσκευές / τελικό μάζεμα','Παραλαμβάνουμε τις αποσκευές και ελέγχουμε ότι είμαστε έτοιμοι για τον σταθμό.', ['motel-one'],{icon:'🧳',category:'hotel'}),
