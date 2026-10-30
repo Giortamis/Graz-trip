@@ -198,7 +198,7 @@ function ActivityDetails({ item, onOpenPhoto }) {
       name: item.title,
       mapUrl: item.mapUrl || (item.destination ? mapUrl(item.destination, item.mode, item.origin) : undefined),
       website: item.website, phone: item.phone, email: item.email,
-    }} hideMap={hideMapForItem || (isRoute && item.legs?.length > 0)} />}
+    }} hideMap={hideMapForItem || (isRoute && item.legs?.length > 1)} />}
 
     {!!item.legs?.length && <details className="transport-details">
       <summary>Μετακίνηση · {item.legs.map(l => l.line).join(' → ')}</summary>
@@ -207,7 +207,7 @@ function ActivityDetails({ item, onOpenPhoto }) {
         <strong>{leg.line}{leg.direction ? ' · προς ' + leg.direction : ''}</strong>
         <span>Από: {leg.from}</span><span>Έως: {leg.to}</span>
         <small>{leg.estimate}</small>
-        {isRoute && !item.disableNavigation && !item.hideMaps && ['walking','transit','driving'].includes(leg.mode) &&
+        {isRoute && item.legs?.length > 1 && !item.disableNavigation && !item.hideMaps && ['walking','transit','driving'].includes(leg.mode) &&
           <PlaceActions place={{name: leg.from + ' → ' + leg.to, mapUrl: mapUrl(leg.to, leg.mode, leg.from)}} />}
       </li>)}</ol>
     </details>}
