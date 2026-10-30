@@ -198,7 +198,7 @@ function ActivityDetails({ item, onOpenPhoto }) {
       name: item.title,
       mapUrl: item.mapUrl || (item.destination ? mapUrl(item.destination, item.mode, item.origin) : undefined),
       website: item.website, phone: item.phone, email: item.email,
-    }} hideMap={hideMapForItem} />}
+    }} hideMap={hideMapForItem || (isRoute && item.legs?.length > 0)} />}
 
     {!!item.legs?.length && <details className="transport-details">
       <summary>Μετακίνηση · {item.legs.map(l => l.line).join(' → ')}</summary>
