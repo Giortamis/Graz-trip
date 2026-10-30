@@ -18,11 +18,11 @@ export default [
     route('22','to-lift','10:48','11:03','Graz Cathedral area -> Schloßbergplatz','Από την περιοχή του καθεδρικού κατεβαίνουμε προς την κάτω είσοδο του Schlossberglift.', 'graz-staircase',LIFT,[
       walk('Doppelwendeltreppe, Hofgasse 15, Graz',LIFT,'Περίπου 15′ με τα πόδια'),
     ]),
-    route('22','lift-up','11:03','11:08','Schloßbergplatz -> Uhrturm','Ανεβαίνουμε στον Schlossberg με το Schlossberglift, όχι από τις σκάλες.', LIFT,'graz-uhrturm',[
+    route('22','lift-up','11:03','11:08','Schloßbergplatz -> Uhrturm','Ανεβαίνουμε στον Schlossberg με το ασανσέρ Schlossberglift — όχι από τις σκάλες.', LIFT,'graz-uhrturm',[
       leg('Schlossberglift','Uhrturm',LIFT,'Uhrturm, Am Schlossberg, Graz','Lift ~30″ + μικρή αναμονή / προσέγγιση','lift'),
     ],{icon:'⬆️'}),
     visit('22','schlossberg','11:08','11:43','activity','Schlossberg + Uhrturm','Το εμβληματικό σημείο του Graz με πανοραμική θέα. Μένουμε επάνω περίπου 35′.', ['graz-uhrturm'],{category:'sightseeing',icon:'⭐'}),
-    route('22','lift-down','11:43','11:48','Uhrturm -> Schloßbergplatz','Κατεβαίνουμε ξανά με το Schlossberglift.', 'graz-uhrturm',LIFT,[
+    route('22','lift-down','11:43','11:48','Uhrturm -> Schloßbergplatz','Κατεβαίνουμε ξανά με το ασανσέρ Schlossberglift.', 'graz-uhrturm',LIFT,[
       leg('Schlossberglift','Schloßbergplatz','Uhrturm, Am Schlossberg, Graz',LIFT,'Lift ~30″ + μικρή αναμονή / προσέγγιση','lift'),
     ],{icon:'⬇️'}),
     route('22','lift-murinsel','11:48','11:53','Schloßbergplatz -> Murinsel','Από την έξοδο του lift περπατάμε προς τη Murinsel.', LIFT,'murinsel',[
