@@ -44,6 +44,7 @@ export default [
     }),
 
     route('21','stadium-tram','16:40','17:00','Αναχώρηση για Stadion Liebenau','Στουρμ Γκρατς - ΟΦΗ, UEFA Europa League.', 'motel-one','stadium',[
+      walk('Motel One Graz, Jakominiplatz 7, Graz',JAKO,'Περίπου 1–2′ με τα πόδια'),
       leg('Tram 4','Liebenau/MURPARK',JAKO,STADIUM_STOP,'Περίπου 12–15′ με αναμονή, συν τελική προσέγγιση'),
     ],{scheduleLabel:'~16:40–17:00',source:grazSource}),
 
@@ -51,8 +52,9 @@ export default [
       icon:'⚽', category:'match', typeLabel:'ΑΓΩΝΑΣ', fixedStart:at('21','18:45'), scheduleLabel:'18:45', durationLabel:'≈2 ώρες · η πραγματική λήξη μπορεί να διαφέρει', statuses:[status('MAIN EVENT','main')],
     }),
 
-    route('21','stadium-return','20:45','21:20','Επιστροφή στο Motel One','Μετά τον αγώνα επιστρέφουμε στο Jakominiplatz. Το slot περιλαμβάνει έξοδο από τις κερκίδες, αναμονή και περπάτημα έως το ξενοδοχείο.', 'stadium','motel-one',[
-      leg('Tram 4','Reininghaus',STADIUM_STOP,JAKO,'Σύνολο περίπου 35′ με έξοδο από το γήπεδο και αναμονή'),
+    route('21','stadium-return','20:45','21:20','Επιστροφή στο Motel One','Μετά τον αγώνα περπατάμε μέχρι τη στάση του Tram 4 και επιστρέφουμε προς Jakominiplatz / Motel One.', 'stadium','motel-one',[
+      walk('Stadion Liebenau, Ivica-Osim-Platz 1, Graz',STADIUM_STOP,'Περίπου 3–5′ με τα πόδια'),
+      leg('Tram 4','Reininghaus',STADIUM_STOP,JAKO,'Προς Jakominiplatz · συνολικά περίπου 35′ μαζί με έξοδο από το γήπεδο και αναμονή'),
     ],{scheduleLabel:'~20:45–21:20',source:grazSource}),
 
     slot('21','free','21:20',null,'free','FREE TIME','Ποτό, φαγητό, βόλτα ή ξεκούραση. Δεν υπάρχει άλλο οργανωμένο πρόγραμμα.',{
